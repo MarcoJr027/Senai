@@ -1,0 +1,420 @@
+body {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(Imagens/imagem\ de\ fundo.jpg);
+    background-size: cover;
+}
+
+#Login {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    margin-left: 20px;
+}
+
+#Login h2, #Login label {
+    margin: 10px 0;
+}
+
+#Login input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+#Login button {
+    background-color: #6fad4a;
+    width: 80%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px 0;
+}
+
+#Login button:hover {
+    background-color: #5fa83d;
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+#Login label {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+#Cadastro {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    width: 600px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#Cadastro h3 {
+    margin: 10px 0;
+}
+
+#Cadastro input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#Cadastro button {
+    background-color: #6fad4a;
+    width: 40%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#Cadastro button:hover {
+    background-color: #5fa83d;
+}
+
+body.principal {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(Imagens/Pagina_Principal.png);
+    background-size: cover;
+    padding-left: 50px;
+}
+
+#Principal {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 400px;
+    margin-left: 20px;
+}
+
+#Principal h1 {
+    margin-bottom: 20px;
+    color: #6fad4a;
+    text-align: center;
+}
+
+#Principal button {
+    background-color: #6fad4a;
+    font-size: 20px;
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#Principal button:hover {
+    background-color: #5fa83d;
+}
+
+body.cadastro_prod {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(Imagens/Fundo_Sistema.png);
+    background-size: cover;
+    padding-left: 50px;
+}
+
+#Cadastro_Produto {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 400px;
+    margin: 20px;
+}
+
+#Cadastro_Produto h2 {
+    margin-bottom: 20px;
+    color: #6fad4a;
+    text-align: center;
+}
+
+#Cadastro_Produto label {
+    margin-top: 15px;
+}
+
+#Cadastro_Produto input[type="text"],
+#Cadastro_Produto input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 15px;
+}
+
+#Cadastro_Produto button {
+    background-color: #6fad4a;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#Cadastro_Produto button:hover {
+    background-color: #5fa83d;
+}
+
+.button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.button-container button {
+    width: auto;
+    margin-top: 10px;
+}
+
+body.gerar_etiquetas {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(Imagens/Fundo_Sistema.png);
+    background-size: cover;
+    padding-left: 50px;
+}
+
+#Gerar_Etiquetas {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 400px;
+}
+
+#Gerar_Etiquetas h2 {
+    margin-bottom: 20px;
+    color: #6fad4a;
+    text-align: center;
+}
+
+#Gerar_Etiquetas label {
+    margin-top: 15px;
+}
+
+#Gerar_Etiquetas input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 15px;
+}
+
+#Gerar_Etiquetas button {
+    background-color: #6fad4a;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#Gerar_Etiquetas button:hover {
+    background-color: #5fa83d;
+}
+
+.button-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.button-container button {
+    background-color: #6fad4a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #5fa83d;
+}
+
+#visualizacao {
+    margin-top: 20px;
+}
+
+#etiqueta_display {
+    background-color: #f9f9f9;
+}
+
+body.relatorio_saidas {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(Imagens/Fundo_Sistema.png);
+    background-size: cover;
+    padding-left: 50px;
+}
+
+#Relatorio_Saidas {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 400px;
+}
+
+#Relatorio_Saidas h2 {
+    margin-bottom: 20px;
+    color: #6fad4a;
+    text-align: center;
+}
+
+#Relatorio_Saidas label {
+    margin-top: 15px;
+}
+
+#Relatorio_Saidas input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 15px;
+}
+
+#Relatorio_Saidas button {
+    background-color: #6fad4a;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#Relatorio_Saidas button:hover {
+    background-color: #5fa83d;
+}
+
+body.consulta_produtos {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(Imagens/Fundo_Sistema.png);
+    background-size: cover;
+    padding-left: 50px;
+}
+
+#Consulta_Produtos {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    width: 400px;
+}
+
+#Consulta_Produtos h2 {
+    margin-bottom: 20px;
+    color: #6fad4a;
+    text-align: center;
+}
+
+#Consulta_Produtos input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 20px;
+}
+
+#produto_info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#produto_info img {
+    margin-top: 10px;
+}
+
+#Consulta_Produtos button {
+    margin-top: 10px;
+    background-color: #6fad4a;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#Consulta_Produtos button:hover {
+    background-color: #5fa83d;
+}

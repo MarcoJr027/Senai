@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Login</title>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <div id="Login">
+        <img src="Imagens/Icone Login.png" width="150" height="150" alt="Ícone de Login">
+        <h2>Usuário:</h2>
+        <input type="text" id="usuario" placeholder="Digite seu usuário">
+        <h2>Senha:</h2>
+        <input type="password" id="senha" placeholder="Digite sua senha">
+        <label>
+            <p>Mostrar Senha:</p>
+            <input type="checkbox" id="mostrarSenhaCheckbox" onchange="mostrarOcultarSenha()">
+        </label>
+        <button onclick="Login()">Entrar</button>
+        <button class="button" onclick="window.location.href='Cadastro.html'">Cadastrar-se</button>
+        <div id="error-message"></div>
+    </div>    
+</body>
+</html>
