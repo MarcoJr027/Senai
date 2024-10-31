@@ -30,6 +30,31 @@ db.run(`CREATE TABLE IF NOT EXISTS usuarios (
     }
 });
 
+
+const db_prod = new sqlite3.Database('./produtos.db', (err) => {
+    if (err) {
+        console.error('Erro ao conectar ao banco de dados', err.message);
+    } else {
+        console.log('Conectado ao banco de dados SQLite.');
+    }
+});
+
+db_prod.run(`CREATE TABLE IF NOT EXISTS produtos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    descricao TEXT NOT NULL,
+    quantidade FLOAT NOT NULL,
+    marca TEXT NOT NULL,
+    codigo_barras TEXT NOT NULL UNIQUE,
+    valor FLOAT NOT NULL,
+)`, (err) => {
+    if (err) {
+        console.error('Erro ao criar a tabela', err.message);
+    } else {
+        console.log('Tabela de produtos criada ou já existe.');
+    }
+});
+
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'Templates')));
@@ -61,6 +86,19 @@ app.post('/usuarios', (req, res) => {
         });
     });
 });
+
+// Rota para cadastrar novos produtos
+app.post('/produtos', (req, res) => {
+    const { descricao, quantidade, marca, codigo_barras, valor } = req.body;
+
+        const sql = 'INSERT INTO produtos (descricao, quantidade, marca, codigo_barras, valor) VALUES (?, ?, ?, ?, ?)';
+        db_prod.run(sql, [descricao, quantidade, marca, codigo_barras, valor], function(err) {
+            if (err) {
+                return res.status(400).json({ error: err.message });
+            }
+            res.status(201).json({ id: this.lastID, descricao, quantidade });
+        });
+    });
 
 // Rota para login
 app.post('/login', (req, res) => {

@@ -23,6 +23,9 @@
         <label for="descricao">Descrição do Produto:</label>
         <input type="text" id="descricao" placeholder="Digite a descrição">
 
+        <label for="quantidade">Quantidade do Produto:</label>
+        <input type="text" id="quantidade" placeholder="Digite a quantidade">
+
         <label for="marca">Marca:</label>
         <input type="text" id="marca" placeholder="Digite a marca">
         
@@ -32,15 +35,50 @@
         <label for="valor">Valor:</label>
         <input type="text" id="valor" placeholder="Digite o valor">
 
-        <label for="imagem">Imagem do Produto:</label>
-        <input type="file" id="imagem" accept="image/*">
-
         <button onclick="CadastrarProduto()">Cadastrar</button>
         
         <div class="button-container">
             <button onclick="window.location.href='Pagina_Principal.html'">Voltar</button>
         </div>
     </div>
+    <script>
+        async function CadastrarProduto() {
+            const descricao = document.getElementById('descricao').value;
+            const quantidade = document.getElementById('quantidade').value;
+            const marca = document.getElementById('marca').value;
+            const codigo_barras = document.getElementById('codigo_barras').value;
+            const valor = document.getElementById('valor').value;
+           
+            const produtoData = {
+                descricao: descricao,
+                quantidade: quantidade,
+                marca: marca,
+                codigo_barras: codigo_barras,
+                valor: valor
+            };
+
+            try {
+                const response = await fetch('http://localhost:8000/produtos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(produtoData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar o produto');
+                }
+
+                const result = await response.json();
+                alert(`Produto cadastrado com sucesso! ID: ${result.id}`);
+
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Falha ao cadastrar o produto. Tente novamente.');
+            }
+        }
+    </script>
 </body>
 
 </html>
