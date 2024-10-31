@@ -19,7 +19,7 @@ db.run(`CREATE TABLE IF NOT EXISTS usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    cpf TEXT NOT NULL,
+    cpf TEXT NOT NULL UNIQUE,
     matricula TEXT NOT NULL,
     senha TEXT NOT NULL
 )`, (err) => {
@@ -41,11 +41,11 @@ const db_prod = new sqlite3.Database('./produtos.db', (err) => {
 
 db_prod.run(`CREATE TABLE IF NOT EXISTS produtos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    descricao TEXT NOT NULL,
+    descricao TEXT NOT NULL UNIQUE,
     quantidade FLOAT NOT NULL,
     marca TEXT NOT NULL,
     codigo_barras TEXT NOT NULL UNIQUE,
-    valor FLOAT NOT NULL,
+    valor FLOAT NOT NULL
 )`, (err) => {
     if (err) {
         console.error('Erro ao criar a tabela', err.message);
