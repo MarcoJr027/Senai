@@ -76,6 +76,13 @@
                 console.error('Erro:', error);
                 alert('Falha ao cadastrar o usuário. Tente novamente.');
             }
+
+            document.getElementById('usuario').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('cpf').value = '';
+            document.getElementById('matricula').value = '';
+            document.getElementById('senha').value = '';
+            document.getElementById('confirmarSenha').value = '';
         }
     </script>
 </body>
