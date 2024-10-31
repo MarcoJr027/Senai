@@ -24,32 +24,9 @@
 
         <button onclick="gerarEtiqueta()">Gerar Etiqueta</button>
 
-        <div id="visualizacao" style="display: none;">
-            <h3>Visualização da Etiqueta:</h3>
-            <div id="etiqueta_display" style="border: 1px solid #000; padding: 10px; margin-top: 10px;">
-                <!-- A visualização será inserida aqui -->
-            </div>
-        </div>
     </div>
     <div class="button-container">
         <button onclick="window.location.href='Pagina_Principal.html'">Voltar</button>
     </div>
-    <script>
-        function gerarEtiqueta() {
-            var codigo = document.getElementById("cod_prod").value;
-            var codigoBarras = document.getElementById("cod_barras").value;
-            var modeloEtiqueta = document.getElementById("modelo_etiqueta").value;
-
-            if (codigo || codigoBarras) {
-                var info = codigo ? "Código do Produto: " + codigo : "Código de Barras: " + codigoBarras;
-                var visualizacao = "Modelo: " + modeloEtiqueta + "<br>" + info;
-                
-                document.getElementById("etiqueta_display").innerHTML = visualizacao;
-                document.getElementById("visualizacao").style.display = "block";
-            } else {
-                alert("Por favor, insira um código de produto ou um código de barras.");
-            }
-        }
-    </script>
 </body>
 </html>

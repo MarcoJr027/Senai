@@ -30,7 +30,6 @@ db.run(`CREATE TABLE IF NOT EXISTS usuarios (
     }
 });
 
-
 const db_prod = new sqlite3.Database('./produtos.db', (err) => {
     if (err) {
         console.error('Erro ao conectar ao banco de dados', err.message);
@@ -54,7 +53,6 @@ db_prod.run(`CREATE TABLE IF NOT EXISTS produtos (
     }
 });
 
-
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'Templates')));
@@ -67,11 +65,9 @@ app.get('/', (req, res) => {
     });
 });
 
-// Rota para cadastrar novos usuários
 app.post('/usuarios', (req, res) => {
     const { nome, email, cpf, matricula, senha } = req.body;
 
-    // Hash da senha antes de salvar
     bcrypt.hash(senha, 10, (err, hashedPassword) => {
         if (err) {
             return res.status(500).json({ error: 'Erro ao hashear a senha.' });
@@ -87,40 +83,34 @@ app.post('/usuarios', (req, res) => {
     });
 });
 
-// Rota para cadastrar novos produtos
 app.post('/produtos', (req, res) => {
     const { descricao, quantidade, marca, codigo_barras, valor } = req.body;
 
-        const sql = 'INSERT INTO produtos (descricao, quantidade, marca, codigo_barras, valor) VALUES (?, ?, ?, ?, ?)';
-        db_prod.run(sql, [descricao, quantidade, marca, codigo_barras, valor], function(err) {
-            if (err) {
-                return res.status(400).json({ error: err.message });
-            }
-            res.status(201).json({ id: this.lastID, descricao, quantidade });
-        });
+    const sql = 'INSERT INTO produtos (descricao, quantidade, marca, codigo_barras, valor) VALUES (?, ?, ?, ?, ?)';
+    db_prod.run(sql, [descricao, quantidade, marca, codigo_barras, valor], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.status(201).json({ id: this.lastID, descricao, quantidade });
     });
+});
 
-// Rota para login
 app.post('/login', (req, res) => {
-    const { usuario, senha } = req.body; // Mudado para 'usuario'
+    const { usuario, senha } = req.body;
 
-    // Verifica se o nome de usuário e a senha foram fornecidos
     if (!usuario || !senha) {
         return res.status(400).json({ error: 'Nome de usuário e senha são obrigatórios.' });
     }
 
-    // Busca o usuário pelo nome
     db.get('SELECT * FROM usuarios WHERE nome = ?', [usuario], (err, row) => {
         if (err) {
             return res.status(500).json({ error: 'Erro ao acessar o banco de dados.' });
         }
 
-        // Verifica se o usuário existe
         if (!row) {
             return res.status(401).json({ error: 'Credenciais inválidas.' });
         }
 
-        // Compara a senha fornecida com a senha armazenada
         bcrypt.compare(senha, row.senha, (err, result) => {
             if (err) {
                 return res.status(500).json({ error: 'Erro ao comparar senhas.' });
@@ -129,7 +119,6 @@ app.post('/login', (req, res) => {
                 return res.status(401).json({ error: 'Credenciais inválidas.' });
             }
 
-            // Login bem-sucedido
             res.status(200).json({ message: 'Login realizado com sucesso!', id: row.id, nome: row.nome });
         });
     });

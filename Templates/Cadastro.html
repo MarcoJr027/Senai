@@ -36,47 +36,47 @@
     </div>
     <script>
         async function Cadastro() {
-            const usuario = document.getElementById('usuario').value;
-            const email = document.getElementById('email').value;
-            const cpf = document.getElementById('cpf').value;
-            const matricula = document.getElementById('matricula').value;
-            const senha = document.getElementById('senha').value;
-            const confirmarSenha = document.getElementById('confirmarSenha').value;
-
+            var usuario = document.getElementById('usuario').value;
+            var email = document.getElementById('email').value;
+            var cpf = document.getElementById('cpf').value;
+            var matricula = document.getElementById('matricula').value;
+            var senha = document.getElementById('senha').value;
+            var confirmarSenha = document.getElementById('confirmarSenha').value;
+    
             if (senha !== confirmarSenha) {
                 alert("As senhas não coincidem!");
                 return;
             }
-
-            const usuarioData = {
+    
+            var usuarioData = {
                 nome: usuario,
                 email: email,
                 cpf: cpf,
                 matricula: matricula,
                 senha: senha
             };
-
+    
             try {
-                const response = await fetch('http://localhost:8000/usuarios', {
+                var response = await fetch('http://localhost:8000/usuarios', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(usuarioData)
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Erro ao cadastrar o usuário');
                 }
-
-                const result = await response.json();
+    
+                var result = await response.json();
                 alert(`Usuário cadastrado com sucesso! ID: ${result.id}`);
-
+    
             } catch (error) {
                 console.error('Erro:', error);
                 alert('Falha ao cadastrar o usuário. Tente novamente.');
             }
-
+    
             document.getElementById('usuario').value = '';
             document.getElementById('email').value = '';
             document.getElementById('cpf').value = '';
@@ -84,7 +84,7 @@
             document.getElementById('senha').value = '';
             document.getElementById('confirmarSenha').value = '';
         }
-    </script>
+    </script>    
 </body>
 
 </html>

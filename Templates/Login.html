@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Login</title>
     <script type="text/javascript" src="script.js"></script>
 </head>
+
 <body>
     <div id="Login">
         <img src="Imagens/Icone Login.png" width="150" height="150" alt="Ícone de Login">
@@ -21,6 +23,52 @@
         <button onclick="Login()">Entrar</button>
         <button class="button" onclick="window.location.href='Cadastro.html'">Cadastrar-se</button>
         <div id="error-message"></div>
-    </div>    
+    </div>
 </body>
+<script>
+    async function Login() {
+        var user = document.getElementById("usuario").value;
+        var senha = document.getElementById("senha").value;
+        var errorMessage = document.getElementById("error-message");
+
+        errorMessage.textContent = '';
+
+        if (!user || !senha) {
+            errorMessage.textContent = 'Por favor, preencha todos os campos.';
+            return;
+        }
+
+        try {
+            var response = await fetch('http://localhost:8000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ usuario: user, senha: senha }),
+            });
+
+            if (response.ok) {
+                var data = await response.json();
+                alert(data.message);
+                window.location.href = 'Pagina_Principal.html';
+            } else {
+                var error = await response.json();
+                errorMessage.textContent = error.error;
+            }
+        } catch (error) {
+            console.error('Erro ao fazer login:', error);
+            errorMessage.textContent = 'Erro ao tentar conectar ao servidor. Tente novamente mais tarde.';
+        }
+
+        document.getElementById("usuario").value = '';
+        document.getElementById("senha").value = '';
+    }
+
+    function mostrarOcultarSenha() {
+        var senhaInput = document.getElementById("senha");
+        var mostrarSenhaCheckbox = document.getElementById("mostrarSenhaCheckbox");
+        senhaInput.type = mostrarSenhaCheckbox.checked ? "text" : "password";
+    }
+</script>
+
 </html>

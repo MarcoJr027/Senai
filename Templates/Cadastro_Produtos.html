@@ -43,48 +43,48 @@
     </div>
     <script>
         async function CadastrarProduto() {
-            const descricao = document.getElementById('descricao').value;
-            const quantidade = document.getElementById('quantidade').value;
-            const marca = document.getElementById('marca').value;
-            const codigo_barras = document.getElementById('codigo_barras').value;
-            const valor = document.getElementById('valor').value;
-
-            const produtoData = {
+            var descricao = document.getElementById('descricao').value;
+            var quantidade = document.getElementById('quantidade').value;
+            var marca = document.getElementById('marca').value;
+            var codigo_barras = document.getElementById('codigo_barras').value;
+            var valor = document.getElementById('valor').value;
+    
+            var produtoData = {
                 descricao: descricao,
                 quantidade: quantidade,
                 marca: marca,
                 codigo_barras: codigo_barras,
                 valor: valor
             };
-
+    
             try {
-                const response = await fetch('http://localhost:8000/produtos', {
+                var response = await fetch('http://localhost:8000/produtos', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(produtoData)
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Erro ao cadastrar o produto');
                 }
-
-                const result = await response.json();
+    
+                var result = await response.json();
                 alert(`Produto cadastrado com sucesso! ID: ${result.id}`);
-
+    
             } catch (error) {
                 console.error('Erro:', error);
                 alert('Falha ao cadastrar o produto. Tente novamente.');
             }
-
+    
             document.getElementById('descricao').value = '';
             document.getElementById('quantidade').value = '';
             document.getElementById('marca').value = '';
             document.getElementById('codigo_barras').value = '';
             document.getElementById('valor').value = '';
         }
-    </script>
+    </script>    
 </body>
 
 </html>

@@ -25,43 +25,5 @@
         </div>
     </div>
 
-    <script>
-        // Exemplo de dados de produtos (normalmente você obteria isso de um banco de dados)
-        const produtos = [
-            { id: 1, codigo: "001", nome: "Produto A", valor: "R$ 10,00", imagem: "Imagens/produtoA.png" },
-            { id: 2, codigo: "002", nome: "Produto B", valor: "R$ 20,00", imagem: "Imagens/produtoB.png" },
-            { id: 3, codigo: "003", nome: "Produto C", valor: "R$ 30,00", imagem: null },
-        ];
-
-        function consultarProduto() {
-            const codigo = document.getElementById("codigo_input").value;
-            const produto = produtos.find(prod => prod.codigo === codigo);
-            const infoContainer = document.getElementById("produto_info");
-
-            if (produto) {
-                document.getElementById("produto_nome").innerText = produto.nome;
-                document.getElementById("produto_valor").innerText = `Valor: ${produto.valor}`;
-                const imagemContainer = document.getElementById("produto_imagem_container");
-                
-                // Limpa a imagem anterior
-                imagemContainer.innerHTML = ""; 
-                
-                if (produto.imagem) {
-                    const img = document.createElement("img");
-                    img.src = produto.imagem;
-                    img.alt = produto.nome;
-                    img.width = 100; // Define a largura da imagem
-                    imagemContainer.appendChild(img);
-                } else {
-                    imagemContainer.innerText = "Imagem não disponível";
-                }
-
-                infoContainer.style.display = "block"; // Exibe as informações do produto
-            } else {
-                infoContainer.style.display = "none"; // Esconde se o produto não for encontrado
-                alert("Produto não encontrado!");
-            }
-        }
-    </script>
 </body>
 </html>

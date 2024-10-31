@@ -20,32 +20,9 @@
         <input type="text" id="produto" placeholder="Digite o nome do produto">
 
         <button onclick="gerarRelatorio()">Gerar Relatório</button>
-
-        <div id="resultado" style="display: none;">
-            <h3>Resultados do Relatório:</h3>
-            <div id="relatorio_display" style="border: 1px solid #000; padding: 10px; margin-top: 10px;">
-                <!-- Os resultados do relatório serão inseridos aqui -->
-            </div>
-        </div>
     </div>
     <div class="button-container">
         <button onclick="window.location.href='Pagina_Principal.html'">Voltar</button>
     </div>
-    <script>
-        function gerarRelatorio() {
-            var dataInicio = document.getElementById("data_inicio").value;
-            var dataFim = document.getElementById("data_fim").value;
-            var produto = document.getElementById("produto").value;
-
-            // Aqui você pode implementar a lógica para gerar o relatório baseado nas entradas
-            var relatorio = "Relatório gerado para o período de " + dataInicio + " a " + dataFim;
-            if (produto) {
-                relatorio += "<br>Produto: " + produto;
-            }
-
-            document.getElementById("relatorio_display").innerHTML = relatorio;
-            document.getElementById("resultado").style.display = "block";
-        }
-    </script>
 </body>
 </html>
