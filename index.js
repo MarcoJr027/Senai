@@ -9,9 +9,7 @@ const PORT = 8000;
 
 const db = new sqlite3.Database('./usuarios.db', (err) => {
     if (err) {
-        console.error('Erro ao conectar ao banco de dados', err.message);
-    } else {
-        console.log('Conectado ao banco de dados SQLite.');
+        console.error('Erro ao conectar ao banco de dados Usuarios', err.message);
     }
 });
 
@@ -32,9 +30,7 @@ db.run(`CREATE TABLE IF NOT EXISTS usuarios (
 
 const db_prod = new sqlite3.Database('./produtos.db', (err) => {
     if (err) {
-        console.error('Erro ao conectar ao banco de dados', err.message);
-    } else {
-        console.log('Conectado ao banco de dados SQLite.');
+        console.error('Erro ao conectar ao banco de dados Produtos', err.message);
     }
 });
 
@@ -121,16 +117,6 @@ app.post('/login', (req, res) => {
 
             res.status(200).json({ message: 'Login realizado com sucesso!', id: row.id, nome: row.nome });
         });
-    });
-});
-
-process.on('SIGINT', () => {
-    db.close((err) => {
-        if (err) {
-            console.error('Erro ao fechar o banco de dados', err.message);
-        }
-        console.log('Conexão com o banco de dados fechada.');
-        process.exit(0);
     });
 });
 
