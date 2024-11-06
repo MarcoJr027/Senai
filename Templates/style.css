@@ -22,7 +22,8 @@ body {
     margin-left: 20px;
 }
 
-#Login h2, #Login label {
+#Login h2,
+#Login label {
     margin: 10px 0;
 }
 
@@ -206,13 +207,13 @@ body.cadastro_prod {
     background-color: #5fa83d;
 }
 
-.button-container {
+.button_voltar {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.button-container button {
+.button_voltar button {
     width: auto;
     margin-top: 10px;
 }
@@ -274,13 +275,13 @@ body.gerar_etiquetas {
     background-color: #5fa83d;
 }
 
-.button-container {
+.button_voltar {
     position: absolute;
     top: 20px;
     right: 20px;
 }
 
-.button-container button {
+.button_voltar button {
     background-color: #6fad4a;
     color: white;
     border: none;
@@ -290,7 +291,7 @@ body.gerar_etiquetas {
     transition: background-color 0.3s ease;
 }
 
-.button-container button:hover {
+.button_voltar button:hover {
     background-color: #5fa83d;
 }
 
@@ -417,4 +418,19 @@ body.consulta_produtos {
 
 #Consulta_Produtos button:hover {
     background-color: #5fa83d;
+}
+
+#info_prod {
+    background-color: rgba(207, 203, 203, 0.74);
+    font-family: "Roboto", sans-serif;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 12px #6fad4a;
+    position: absolute;
+    right: 20%;
+    padding: 40px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

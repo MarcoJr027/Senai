@@ -7,9 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Cadastro de Produtos</title>
 </head>
 
@@ -32,12 +30,17 @@
         <label for="valor">Valor:</label>
         <input type="text" id="valor" placeholder="Digite o valor">
 
+
+        <label for="imagem">Imagem do Produto:</label>
+        <input type="file" id="imagem" accept="image/*">
+
         <button onclick="CadastrarProduto()">Cadastrar</button>
 
-        <div class="button-container">
+        <div class="button_voltar">
             <button onclick="window.location.href='Pagina_Principal.html'">Voltar</button>
         </div>
     </div>
+
     <script>
         async function CadastrarProduto() {
             var descricao = document.getElementById('descricao').value;
@@ -45,41 +48,41 @@
             var marca = document.getElementById('marca').value;
             var codigo_barras = document.getElementById('codigo_barras').value;
             var valor = document.getElementById('valor').value;
-    
-            var produtoData = {
-                descricao: descricao,
-                quantidade: quantidade,
-                marca: marca,
-                codigo_barras: codigo_barras,
-                valor: valor
-            };
-    
+            var imagemInput = document.getElementById('imagem');
+            var imagem = imagemInput.files[0];
+
+            var formData = new FormData();
+            formData.append('descricao', descricao);
+            formData.append('quantidade', quantidade);
+            formData.append('marca', marca);
+            formData.append('codigo_barras', codigo_barras);
+            formData.append('valor', valor);
+            formData.append('imagem', imagem);
+
             try {
                 var response = await fetch('http://localhost:8000/produtos', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(produtoData)
+                    body: formData
                 });
-    
+
                 if (!response.ok) {
                     throw new Error('Erro ao cadastrar o produto');
                 }
-    
+
                 var result = await response.json();
                 alert(`Produto cadastrado com sucesso! ID: ${result.id}`);
-    
+                
             } catch (error) {
                 console.error('Erro:', error);
                 alert('Falha ao cadastrar o produto. Tente novamente.');
             }
-    
+
             document.getElementById('descricao').value = '';
             document.getElementById('quantidade').value = '';
             document.getElementById('marca').value = '';
             document.getElementById('codigo_barras').value = '';
             document.getElementById('valor').value = '';
+            document.getElementById('imagem').value = '';
         }
     </script>    
 </body>

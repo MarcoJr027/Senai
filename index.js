@@ -70,7 +70,7 @@ app.post('/usuarios', (req, res) => {
         }
 
         const sql = 'INSERT INTO usuarios (nome, email, cpf, matricula, senha) VALUES (?, ?, ?, ?, ?)';
-        db.run(sql, [nome, email, cpf, matricula, hashedPassword], function(err) {
+        db.run(sql, [nome, email, cpf, matricula, hashedPassword], function (err) {
             if (err) {
                 return res.status(400).json({ error: err.message });
             }
@@ -83,7 +83,7 @@ app.post('/produtos', (req, res) => {
     const { descricao, quantidade, marca, codigo_barras, valor } = req.body;
 
     const sql = 'INSERT INTO produtos (descricao, quantidade, marca, codigo_barras, valor) VALUES (?, ?, ?, ?, ?)';
-    db_prod.run(sql, [descricao, quantidade, marca, codigo_barras, valor], function(err) {
+    db_prod.run(sql, [descricao, quantidade, marca, codigo_barras, valor], function (err) {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
@@ -117,6 +117,41 @@ app.post('/login', (req, res) => {
 
             res.status(200).json({ message: 'Login realizado com sucesso!', id: row.id, nome: row.nome });
         });
+    });
+});
+
+app.get('/produtos/id/:id', (req, res) => {
+    const { id } = req.params;
+
+    const sql = 'SELECT * FROM produtos WHERE id = ?';
+    db_prod.get(sql, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: 'Erro ao acessar o banco de dados.' });
+        }
+
+        if (!row) {
+            return res.status(404).json({ error: 'Produto não encontrado.' });
+        }
+
+        res.status(200).json(row);
+    });
+});
+
+app.get('/produtos/descricao/:descricao', (req, res) => {
+    const { descricao } = req.params;
+
+    const sql = 'SELECT * FROM produtos WHERE descricao LIKE ?';
+    
+    db_prod.all(sql, [`%${descricao}%`], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: 'Erro ao acessar o banco de dados.' });
+        }
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: 'Nenhum produto encontrado com essa descrição.' });
+        }
+
+        res.status(200).json(rows);
     });
 });
 

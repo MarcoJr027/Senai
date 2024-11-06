@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Consultar Produtos</title>
+    <title>Consultar Produto por ID</title>
 </head>
+
 <body class="consulta_produtos">
     <div id="Consulta_Produtos">
-        <h2>Consultar Produtos</h2>
+        <h2>Consultar Produto</h2>
 
-        <input type="text" id="codigo_input" placeholder="Digite o código do produto">
-        
+        <input type="number" id="id_prod" placeholder="Digite o ID do produto">
+        <input type="text" id="descricao_prod" placeholder="Digite a descrição do produto">
+
+
         <button onclick="consultarProduto()">Consultar</button>
 
-        <div id="produto_info" style="display: none;">
-            <h3 id="produto_nome"></h3>
-            <p id="produto_valor"></p>
-            <div id="produto_imagem_container"></div>
-        </div>
-        
-        <div class="button-container">
+        <div class="button_voltar">
             <button onclick="window.location.href='Pagina_Principal.html'">Voltar</button>
         </div>
     </div>
+
+    <div id="info_prod" style="display: none;">
+        <h1 id="produto_nome"></h1>
+        <h1 id="produto_valor"></h1>
+        <h1 id="produto_marca"></h1>
+        <h1 id="produto_quantidade"></h1>
+    </div>
+
+    <script>
+function consultarProduto() {
+    const id = document.getElementById('id_prod').value.trim();
+    const descricao = document.getElementById('descricao_prod').value.trim();
+
+    if (!id) {
+        alert('Por favor, insira o ID ou a descrição do produto.');
+        return;
+    }
+
+    if (id) {
+        fetch(`http://localhost:8000/produtos/id/${id}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Produto não encontrado.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('info_prod').style.display = 'block';
+                document.getElementById('produto_nome').textContent = `${data.descricao}`;
+                document.getElementById('produto_valor').textContent = `R$ ${data.valor.toFixed(2)}`;
+                document.getElementById('produto_marca').textContent = `${data.marca}`;
+                document.getElementById('produto_quantidade').textContent = `Estoque: ${data.quantidade}`;
+            })
+            .catch(error => {
+                alert(error.message);
+                document.getElementById('info_prod').style.display = 'none';
+            });
+}
+}
+    </script>
 </body>
+
 </html>
